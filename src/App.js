@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useTranslation } from "react-i18next";
+import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
+import AboutMe from "./pages/AboutMe";
+import Home from "./pages/Home";
+import Router from "./pages/router";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
+  const { t, i18n } = useTranslation();
+  const clickHandle = async (lang) => {
+    await i18n.changeLanguage(lang);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      {/* //{" "}
+      <div className="App">
+        // Aktif dil: {i18n.language} <br />
+        // <button onClick={() => clickHandle("tr")}>Tr</button>
+        // <button onClick={() => clickHandle("en")}>En</button>
+        // <br />
+        // <h3>{t(`welcome`)}</h3>
+        //{" "} */}
+      <Router />
+      <Footer />
+    </>
   );
 }
 
